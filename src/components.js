@@ -6,6 +6,7 @@ export const typeTextarea = "textarea";
 export const typeSelect = "select";
 export const typeCountrySelect = "country-select";
 export const typeCheckbox = "checkbox";
+export const typeCheckboxGroup = "checkbox-group";
 export const typeRadio = "radio";
 export const typeRadioGroup = "radio-group";
 export const typeButton = "button";
@@ -84,19 +85,8 @@ export default function (editor, opt = {}) {
     model: {
       defaults: {
         draggable: "form, form *",
-        droppable: false,
-      },
-    },
-  });
-
-  // RadioGroup
-  domc.addType(typeRadioGroup, {
-    isComponent: (el) => el.tagName == "DIV",
-
-    model: {
-      defaults: {
-        draggable: "form, form *",
-        droppable: false,
+        attributes: { class: "form-fluid" },
+        components: [{ type: typeLabel }, { type: typeInput, attributes: { type: "text" } }],
       },
     },
   });
@@ -108,7 +98,7 @@ export default function (editor, opt = {}) {
     model: {
       defaults: {
         tagName: "input",
-        draggable: "form, form *, .form-fluid",
+        draggable: "form, form *",
         droppable: false,
         highlightable: false,
         attributes: { type: "text" },
@@ -238,7 +228,7 @@ export default function (editor, opt = {}) {
     model: {
       defaults: {
         tagName: "button",
-        attributes: { type: "button" },
+        attributes: { type: "button", class: "btn btn-normal px-5 text-sm w-100 font-weight-600" },
         text: "Send",
         traits: [
           {
@@ -283,8 +273,120 @@ export default function (editor, opt = {}) {
     model: {
       defaults: {
         tagName: "label",
+        attributes: { class: "text-s color-dark-green mb-1" },
         components: "Label",
         traits: [forTrait],
+      },
+    },
+  });
+
+  //CHECKBOX-GROUP
+
+  domc.addType(typeCheckboxGroup, {
+    isComponent: (el) => el.tagName == "DIV",
+
+    model: {
+      defaults: {
+        draggable: "form, form *",
+        attributes: { class: "form-fluid" },
+        components: [
+          { type: typeLabel, components: "CheckboxGroup" },
+          {
+            attributes: { class: "checkbox-wrapper mb-1" },
+            components: [
+              { type: typeLabel, components: "One" },
+              { type: typeCheckbox, attributes: { name: "checkbox0" } },
+              { tagName: "span", attributes: { class: "checkmark" } },
+            ],
+          },
+          {
+            attributes: { class: "checkbox-wrapper mb-1" },
+            components: [
+              { type: typeLabel, components: "Two" },
+              { type: typeCheckbox, attributes: { name: "checkbox1" } },
+              { tagName: "span", attributes: { class: "checkmark" } },
+            ],
+          },
+        ],
+      },
+    },
+  });
+
+  // RADIO-GROUP
+  domc.addType(typeRadioGroup, {
+    isComponent: (el) => el.tagName == "DIV",
+
+    model: {
+      defaults: {
+        draggable: "form, form *",
+        attributes: { class: "form-fluid" },
+        components: [
+          { type: typeLabel, components: "RadioGroup" },
+          {
+            attributes: { class: "radio-wrapper mb-1" },
+            components: [
+              { type: typeLabel, components: "One" },
+              { type: typeRadio, attributes: { name: "radioGroup0" } },
+              { tagName: "span", attributes: { class: "radio-checkmark" } },
+            ],
+          },
+          {
+            attributes: { class: "radio-wrapper mb-1" },
+            components: [
+              { type: typeLabel, components: "Two" },
+              { type: typeRadio, attributes: { name: "radioGroup0" } },
+              { tagName: "span", attributes: { class: "radio-checkmark" } },
+            ],
+          },
+        ],
+      },
+    },
+  });
+
+  // COUNTRY-SELECT
+  domc.addType(typeCountrySelect, {
+    isComponent: (el) => el.tagName == "DIV",
+
+    model: {
+      defaults: {
+        draggable: "form, form *",
+        attributes: { class: "form-fluid" },
+        components: [
+          { type: typeLabel, components: "Countries" },
+          { type: typeSelect, attributes: { class: "gjs-country-selector", name: "country" }, components: [] },
+        ],
+      },
+    },
+  });
+
+  // PHONENUMBER-SELECT
+  domc.addType(typePhoneNumberInput, {
+    isComponent: (el) => el.tagName == "DIV",
+
+    model: {
+      defaults: {
+        draggable: "form, form *",
+        attributes: { class: "form-fluid" },
+        components: [
+          { type: typeLabel, components: "Phone Number" },
+          {
+            attributes: { class: "gjs-phone-number-wrapper" },
+            components: [
+              { type: typeSelect, attributes: { class: "country-code-selector", name: "country-code" }, components: [] },
+              {
+                type: typeInput,
+                attributes: {
+                  type: "text",
+                  name: "phone_number",
+                  id: "phone_number",
+                  class: "w-100",
+                  placeholder: "Enter your phone number",
+                },
+              },
+            ],
+          },
+          { tagName: "span", attributes: { class: "errorMsg" } },
+        ],
       },
     },
   });

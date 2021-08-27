@@ -30,9 +30,11 @@
         storageManager:{autoload: 0},
         container : '#gjs',
         fromElement: true,
+        allowScripts: 1,
+
         canvas: {
-          scripts: ['form_elements.js'],
-          styles: ['common.css', 'custom.css']
+          scripts: ['jquery-3.6.0.min.js', 'form_elements.js'],
+          styles: ['form-element.css', 'custom.css']
         },
 
         plugins: ['grapesjs-plugin-custom-form'],

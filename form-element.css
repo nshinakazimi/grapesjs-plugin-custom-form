@@ -1,0 +1,302 @@
+/*
+  Font Sizes:
+  48px/60px, xxl
+  40px/50px, xl,
+  36px/45px, l
+  24px/30px, m
+  20px/25px, lm,
+  18px/23px, sm
+  16px/20px, s
+  14px/18px, ls
+  12px/15px, xs
+*/
+/**** Colors ****/
+form ul.form-fields {
+  list-style: none;
+  padding-left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+form ul.form-fields > li {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+form fieldset {
+  border: none;
+  padding: 0;
+}
+form fieldset legend {
+  padding: 0;
+}
+form .form-fluid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+}
+form .form-fluid .errorMsg {
+  font-size: 12px;
+  color: #c02026;
+}
+form .form-fluid textarea {
+  min-height: 150px;
+}
+form .form-fluid select,
+form .form-fluid input[type=datetime-local], form .form-fluid input[type=number], form .form-fluid input[type=text], form .form-fluid input[type=email], form .form-fluid input[type=password], form .form-fluid input[type=tel] {
+  -webkit-appearance: none;
+}
+form .form-fluid select {
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") right 0.75rem center/8px 10px no-repeat;
+}
+
+textarea,
+select,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=datetime-local],
+input[type=number] {
+  padding: 10px;
+  border: 1px solid #E0E6ED;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 6px;
+  outline: none;
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  color: #22383A;
+}
+textarea::-webkit-input-placeholder, select::-webkit-input-placeholder, input[type=text]::-webkit-input-placeholder, input[type=email]::-webkit-input-placeholder, input[type=password]::-webkit-input-placeholder, input[type=tel]::-webkit-input-placeholder, input[type=datetime-local]::-webkit-input-placeholder, input[type=number]::-webkit-input-placeholder {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  line-height: 18px;
+  color: #8492A5;
+}
+textarea::-moz-placeholder, select::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, input[type=tel]::-moz-placeholder, input[type=datetime-local]::-moz-placeholder, input[type=number]::-moz-placeholder {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  line-height: 18px;
+  color: #8492A5;
+}
+textarea:-ms-input-placeholder, select:-ms-input-placeholder, input[type=text]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder, input[type=tel]:-ms-input-placeholder, input[type=datetime-local]:-ms-input-placeholder, input[type=number]:-ms-input-placeholder {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  line-height: 18px;
+  color: #8492A5;
+}
+textarea::-ms-input-placeholder, select::-ms-input-placeholder, input[type=text]::-ms-input-placeholder, input[type=email]::-ms-input-placeholder, input[type=password]::-ms-input-placeholder, input[type=tel]::-ms-input-placeholder, input[type=datetime-local]::-ms-input-placeholder, input[type=number]::-ms-input-placeholder {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  line-height: 18px;
+  color: #8492A5;
+}
+textarea::placeholder,
+select::placeholder,
+input[type=text]::placeholder,
+input[type=email]::placeholder,
+input[type=password]::placeholder,
+input[type=tel]::placeholder,
+input[type=datetime-local]::placeholder,
+input[type=number]::placeholder {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  line-height: 18px;
+  color: #8492A5;
+}
+textarea.validation-error,
+select.validation-error,
+input[type=text].validation-error,
+input[type=email].validation-error,
+input[type=password].validation-error,
+input[type=tel].validation-error,
+input[type=datetime-local].validation-error,
+input[type=number].validation-error {
+  border-color: #c02026AA;
+}
+
+.gjs-checkbox-wrapper,
+.checkbox-wrapper {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 23px;
+  color: #22383A;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.gjs-checkbox-wrapper input,
+.checkbox-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.gjs-checkbox-wrapper .checkmark,
+.checkbox-wrapper .checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 3px;
+}
+.gjs-checkbox-wrapper .checkmark:after,
+.checkbox-wrapper .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 4px;
+  width: 4px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.gjs-checkbox-wrapper:hover input ~ .checkmark,
+.checkbox-wrapper:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.gjs-checkbox-wrapper input:checked ~ .checkmark,
+.checkbox-wrapper input:checked ~ .checkmark {
+  background-color: #22383A;
+}
+.gjs-checkbox-wrapper input:checked ~ .checkmark::after,
+.checkbox-wrapper input:checked ~ .checkmark::after {
+  display: block;
+}
+
+/** Radio Box **/
+.gjs-radio-wrapper,
+.radio-wrapper {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 20px;
+  color: #22383A;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.gjs-radio-wrapper input,
+.radio-wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.gjs-radio-wrapper input:checked ~ .radio-checkmark,
+.radio-wrapper input:checked ~ .radio-checkmark {
+  background-color: #22383A;
+}
+.gjs-radio-wrapper input:checked ~ .radio-checkmark:after,
+.radio-wrapper input:checked ~ .radio-checkmark:after {
+  display: block;
+}
+.gjs-radio-wrapper .radio-checkmark,
+.radio-wrapper .radio-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.gjs-radio-wrapper .radio-checkmark:after,
+.radio-wrapper .radio-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 7px;
+  left: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+.gjs-radio-wrapper:hover input ~ .radio-checkmark,
+.radio-wrapper:hover input ~ .radio-checkmark {
+  background-color: #ccc;
+}
+
+.gjs-country-selector button,
+.country-selector button {
+  padding: 10px !important;
+  border: 1px solid #E0E6ED !important;
+  border-radius: 6px;
+}
+.gjs-country-selector .dropdown-content,
+.country-selector .dropdown-content {
+  max-height: 350px;
+  overflow: auto;
+}
+.gjs-country-selector .dropdown-content ul li,
+.country-selector .dropdown-content ul li {
+  cursor: pointer;
+  background-color: #FFF;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.gjs-country-selector .dropdown-content ul li:hover,
+.country-selector .dropdown-content ul li:hover {
+  background-color: #E0E6ED;
+}
+
+.gjs-phone-number-wrapper .country-code-selector {
+  width: 120px;
+}
+.gjs-phone-number-wrapper .select2-container .select2-selection--single {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-right: none !important;
+  max-height: 40px;
+}
+.gjs-phone-number-wrapper input[type=text] {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.select2.select2-container .select2-selection--single {
+  height: unset;
+  padding: 10px;
+  border: 1px solid #E0E6ED;
+}
+.select2.select2-container .select2-selection__rendered {
+  line-height: 120% !important;
+  padding: 0px !important;
+}
+.select2.select2-container .select2-selection__arrow {
+  height: 100% !important;
+  top: 0px !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+  border: 1px solid #E0E6ED !important;
+}
+
+.select2-dropdown {
+  border-color: #E0E6ED !important;
+}

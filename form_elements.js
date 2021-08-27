@@ -241,11 +241,16 @@ const country_phone_match = [
     {phone_code: "263", country_code: "ZW"}
 ];
 let allCountries = [];
+getCountries();
 
-$(window).on('load', function() {
-    if ($(".phone-number-wrapper").length) {
-        initMask();
-    }
+function init() {
+    console.log("here");
+    $('select').select2({
+        placeholder: 'Select an option'
+    });
+}
+
+function getCountries() {
     $.ajax(
         ajaxUrlToGetAllCountries,
         {
@@ -256,64 +261,76 @@ $(window).on('load', function() {
             success: function (data, status, xhr) {
                 if (status == "success") {
                     allCountries = data.countries;
-                    if ($(".country-selector").length) {
-                        initCountrySelector();
-                    }
-                    if ($(".phone-number-wrapper").length) {
-                        initPhoneNumberSelector();
-                    }
+                    initCountrySelector();
+                    initPhoneNumberSelector();
                 }
             }
         }
     );
-});
+}
 
 function initCountrySelector() {
-    let html = ``;
+    let options = [];
     allCountries.forEach(country => {
         let { id, code, title } = country;
-        html += `<li class="py-1 px-2" onclick="selectCountryPicker('${code}', '${title}', '${id}')"><span class="flag-icon flag-icon-${code.toLowerCase()} mr-1"></span>${title}</li>`
+        options.push({
+            id: id,
+            text: title,
+            html: `<span class="flag-icon flag-icon-${code.toLowerCase()} mr-1"></span>${title}`
+        });
     });
-    $('#form-countries').html(`<ul>${html}</ul>`);
+    $(".gjs-country-selector").select2({
+        data: options,
+        templateResult: function(data) {
+            return data.html
+        },
+        templateSelection: function(data) {
+            return data.html;
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        }
+    })
 }
 
 function initPhoneNumberSelector() {
-    let html = ``;
+    initMask();
+    let options = [];
     allCountries.forEach(country => {
         let { code } = country;
         let phone_item = country_phone_match.find(it => {
             return it.country_code.toLowerCase() == code.toLowerCase()
         });
-
-        html += `<li class="py-1 px-2 d-flex align-items-center" onclick="selectCountryCodePicker('${code}', '${phone_item?phone_item.phone_code:""}')"><span class="flag-icon flag-icon-${code.toLowerCase()} mr-1"></span>+${phone_item?phone_item.phone_code:''}</li>`;
+        if (phone_item) {
+            options.push({
+                id: code,
+                text: phone_item.phone_code,
+                html: `<span class="flag-icon flag-icon-${code.toLowerCase()} mr-1"></span>+${phone_item?phone_item.phone_code:''}`
+            });
+        }
     });
-    $('#phone_countries_list').html(`<ul>${html}</ul>`);
+    $(".country-code-selector").select2({
+        minimumResultsForSearch: -1,
+        data: options,
+        templateResult: function(data) {
+            return data.html
+        },
+        templateSelection: function(data) {
+            return data.html;
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        }
+    })
 }
 
-function selectCountryCodePicker(country_code, phone_code) {
-    console.log(country_code, phone_code);
-    $('#phone_countries_list').removeClass('show');
-    $(".phone-number-wrapper .country-selector button").html(
-        `<span class="flag-icon flag-icon-${country_code.toLowerCase()}"></span>
-        <span class="phone_code ml-1">+${phone_code}</span>
-        `
-    )
-}
-
-function selectCountryPicker(code, title, id) {
-    $('#form-countries').removeClass('show');
-    $('input[name="selected_country_id"] ').val(id);
-    $('#display_name').html(`<span class="flag-icon flag-icon-${code.toLowerCase()} mr-1"></span>${title}`)
-}
 
 function initMask() {
     (function( jQuery, window, undefined ) {
         "use strict";
-
         var matched, browser;
         jQuery.uaMatch = function( ua ) {
             ua = ua.toLowerCase();
-
             var match = /(opr)[\/]([\w.]+)/.exec( ua ) ||
                 /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
                 /(version)[ \/]([\w.]+).*(safari)[ \/]([\w.]+)/.exec( ua ) ||

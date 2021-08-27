@@ -7,6 +7,7 @@ import {
   typeSelect,
   typeCountrySelect,
   typeCheckbox,
+  typeCheckboxGroup,
   typeRadio,
   typeRadioGroup,
   typeButton,
@@ -37,64 +38,28 @@ export default function (editor, opt = {}) {
           attributes: { type: "hidden" },
         },
         {
-          attributes: { class: "form-fluid" },
+          type: typeFormGroup,
           components: [
-            { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "Name" },
-            { type: typeInput },
+            { type: typeLabel, components: "Name" },
+            { type: typeInput, attributes: { type: "text" } },
           ],
         },
         {
-          attributes: { class: "form-fluid" },
+          type: typeFormGroup,
           components: [
-            { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "Email" },
+            { type: typeLabel, components: "Email" },
             { type: typeInput, attributes: { type: "email" } },
           ],
         },
         {
-          attributes: { class: "form-fluid" },
+          type: typeFormGroup,
           components: [
-            { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "Check" },
-            {
-              attributes: { class: "checkbox-wrapper" },
-              components: [
-                { type: typeLabel, components: "M" },
-                { type: typeCheckbox, attributes: { name: "gender" } },
-                { tagName: "span", attributes: { class: "checkmark" } },
-              ],
-            },
-            {
-              attributes: { class: "checkbox-wrapper" },
-              components: [
-                { type: typeLabel, components: "F" },
-                { type: typeCheckbox, attributes: { name: "gender" } },
-                { tagName: "span", attributes: { class: "checkmark" } },
-              ],
-            },
+            { type: typeLabel, components: "Select" },
+            { type: typeSelect },
           ],
         },
-        {
-          type: typeRadioGroup,
-          attributes: { class: "form-fluid" },
-          components: [
-            { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "RadioGroup" },
-            {
-              attributes: { class: "radio-wrapper" },
-              components: [
-                { type: typeLabel, components: "One" },
-                { type: typeRadio, attributes: { name: "radio0" } },
-                { tagName: "span", attributes: { class: "radio-checkmark" } },
-              ],
-            },
-            {
-              attributes: { class: "radio-wrapper" },
-              components: [
-                { type: typeLabel, components: "Two" },
-                { type: typeRadio, attributes: { name: "radio0" } },
-                { tagName: "span", attributes: { class: "radio-checkmark" } },
-              ],
-            },
-          ],
-        },
+        { type: typeCheckboxGroup },
+        { type: typeRadioGroup },
         {
           attributes: { class: "form-fluid" },
           components: [
@@ -105,12 +70,8 @@ export default function (editor, opt = {}) {
         {
           attributes: { class: "form-fluid" },
           components: [
-            { type: typeButton, attributes: { class: "btn btn-normal px-5 text-sm w-100 font-weight-600" } },
+            { type: typeButton },
           ],
-        },
-        {
-          attributes: { class: "form-fluid" },
-          components: [{ type: typeCountrySelect }],
         },
       ],
     },
@@ -123,14 +84,7 @@ export default function (editor, opt = {}) {
         <path d="M 4.692 9.613 L 5.534 9.613 L 5.534 13.355 L 4.692 13.355 Z" style=""></path>
         <path d="M 22.41 6.193 C 22.409 5.087 21.88 4.35 21.033 4.35 L 2.73 4.35 C 1.778 4.35 1.248 5.087 1.249 6.193 L 1.257 17.257 C 1.258 18.365 1.788 19.102 2.634 19.102 L 21.043 19.102 C 21.89 19.102 22.419 18.365 22.418 17.257 L 22.41 6.193 Z M 21.359 17.257 L 2.315 17.257 L 2.307 6.193 L 21.351 6.193 L 21.359 17.257 Z" style=""></path>
       </svg>`,
-    content: {
-      type: typeFormGroup,
-      attributes: { class: "form-fluid" },
-      components: [
-        { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "Label" },
-        { type: typeInput },
-      ],
-    },
+    content: { type: typeFormGroup },
   });
 
   addBlock(typeInput, {
@@ -175,6 +129,16 @@ export default function (editor, opt = {}) {
     content: { type: typeCheckbox },
   });
 
+  addBlock(typeCheckboxGroup, {
+    label: "Checkbox Group",
+    media: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M 4.244 11.339 L 2.791 9.886 L 3.201 9.473 L 4.244 10.516 L 6.45 8.311 L 6.859 8.723 M 6.859 7.271 L 2.791 7.271 C 2.469 7.271 2.21 7.529 2.21 7.852 L 2.21 11.92 C 2.21 12.239 2.472 12.501 2.791 12.501 L 6.859 12.501 C 7.179 12.501 7.44 12.239 7.44 11.92 L 7.44 7.852 C 7.44 7.531 7.18 7.271 6.859 7.271 Z" style=""></path>
+    <path d="M 11.333 11.333 L 9.88 9.88 L 10.29 9.467 L 11.333 10.51 L 13.539 8.305 L 13.948 8.717 M 13.948 7.265 L 9.88 7.265 C 9.558 7.265 9.299 7.523 9.299 7.846 L 9.299 11.914 C 9.299 12.233 9.561 12.495 9.88 12.495 L 13.948 12.495 C 14.268 12.495 14.529 12.233 14.529 11.914 L 14.529 7.846 C 14.529 7.525 14.269 7.265 13.948 7.265 Z" style=""></path>
+    <path d="M 18.592 11.199 L 17.139 9.746 L 17.549 9.333 L 18.592 10.376 L 20.798 8.171 L 21.207 8.583 M 21.207 7.131 L 17.139 7.131 C 16.817 7.131 16.558 7.389 16.558 7.712 L 16.558 11.78 C 16.558 12.099 16.82 12.361 17.139 12.361 L 21.207 12.361 C 21.527 12.361 21.788 12.099 21.788 11.78 L 21.788 7.712 C 21.788 7.391 21.528 7.131 21.207 7.131 Z" style=""></path>
+  </svg>`,
+    content: { type: typeCheckboxGroup },
+  });
+
   addBlock(typeRadio, {
     label: "Radio",
     media:
@@ -189,29 +153,7 @@ export default function (editor, opt = {}) {
         <path d="M 18.257 14.081 C 16.945 14.081 15.882 12.779 15.882 11.171 C 15.882 9.567 16.945 8.263 18.257 8.263 C 19.567 8.263 20.63 9.567 20.63 11.171 C 20.63 12.779 19.567 14.081 18.257 14.081 M 18.257 7.54 C 16.619 7.54 15.289 9.166 15.289 11.171 C 15.289 13.178 16.619 14.807 18.257 14.807 C 19.894 14.807 21.223 13.178 21.223 11.171 C 21.223 9.166 19.894 7.54 18.257 7.54 M 18.257 9.354 C 17.437 9.354 16.772 10.168 16.772 11.171 C 16.772 12.175 17.437 12.99 18.257 12.99 C 19.076 12.99 19.74 12.175 19.74 11.171 C 19.74 10.168 19.076 9.354 18.257 9.354 Z" style=""></path>
         <path d="M 6.435 14.183 C 5.123 14.183 4.061 12.882 4.061 11.272 C 4.061 9.669 5.123 8.365 6.435 8.365 C 7.747 8.365 8.808 9.669 8.808 11.272 C 8.808 12.882 7.747 14.183 6.435 14.183 M 6.435 7.638 C 4.798 7.638 3.468 9.266 3.468 11.272 C 3.468 13.282 4.798 14.911 6.435 14.911 C 8.073 14.911 9.402 13.282 9.402 11.272 C 9.402 9.266 8.073 7.638 6.435 7.638 M 6.435 9.458 C 5.616 9.458 4.952 10.27 4.952 11.272 C 4.952 12.275 5.616 13.092 6.435 13.092 C 7.254 13.092 7.919 12.275 7.919 11.272 C 7.919 10.27 7.254 9.458 6.435 9.458 Z" style=""></path>
       </svg>`,
-    content: {
-      type: typeRadioGroup,
-      attributes: { class: "form-fluid" },
-      components: [
-        { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "RadioGroup" },
-        {
-          attributes: { class: "radio-wrapper" },
-          components: [
-            { type: typeLabel, components: "One" },
-            { type: typeRadio, attributes: { name: "radio0" } },
-            { tagName: "span", attributes: { class: "radio-checkmark" } },
-          ],
-        },
-        {
-          attributes: { class: "radio-wrapper" },
-          components: [
-            { type: typeLabel, components: "Two" },
-            { type: typeRadio, attributes: { name: "radio0" } },
-            { tagName: "span", attributes: { class: "radio-checkmark" } },
-          ],
-        },
-      ],
-    },
+    content: { type: typeRadioGroup },
   });
 
   addBlock(typeCountrySelect, {
@@ -221,46 +163,7 @@ export default function (editor, opt = {}) {
         <path d="M19.3,16.9c0.4-0.7,0.7-1.5,0.7-2.4c0-2.5-2-4.5-4.5-4.5S11,12,11,14.5s2,4.5,4.5,4.5c0.9,0,1.7-0.3,2.4-0.7l3.2,3.2 l1.4-1.4L19.3,16.9z M15.5,17c-1.4,0-2.5-1.1-2.5-2.5s1.1-2.5,2.5-2.5s2.5,1.1,2.5,2.5S16.9,17,15.5,17z M12,20v2 C6.48,22,2,17.52,2,12C2,6.48,6.48,2,12,2c4.84,0,8.87,3.44,9.8,8h-2.07c-0.64-2.46-2.4-4.47-4.73-5.41V5c0,1.1-0.9,2-2,2h-2v2 c0,0.55-0.45,1-1,1H8v2h2v3H9l-4.79-4.79C4.08,10.79,4,11.38,4,12C4,16.41,7.59,20,12,20z"></path>
       </g>
     </svg>`,
-    content: {
-      type: typeCountrySelect,
-      attributes: { class: "form-fluid" },
-      components: [
-        { type: typeLabel, attributes: { class: "text-s color-dark-green mb-1" }, components: "Countries" },
-        {
-          attributes: { class: "dropdown-wrapper country-selector" },
-          components: [
-            {
-              attributes: { class: "dropdown w-100" },
-              components: [
-                { type: typeInput, attributes: { type: "hidden", name: "selected_country_id", value: "-1" } },
-                {
-                  tagName: "button",
-                  attributes: {
-                    type: "button",
-                    class:
-                      "dropbtn text-ls color-dark-green font-weight-normal py-0 w-100 d-flex justify-content-between align-items-center",
-                  },
-                  components: [
-                    {
-                      tagName: "p",
-                      attributes: { class: "m-0", id: "display_name" },
-                      components: [{ tagName: "span", components: "Select a Country" }],
-                    },
-                    {
-                      tagName: "svg",
-                      components: `<svg width="10" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.8 8.8L15.6571 1.94286C16.1143 1.48571 16.1143 0.8 15.6571 0.342857C15.2 -0.114285 14.5143 -0.114285 14.0571 0.342857L8 6.4L1.94286 0.342857C1.48571 -0.114285 0.799998 -0.114285 0.342855 0.342857C0.114285 0.571429 0 0.8 0 1.14286C0 1.48571 0.114285 1.71429 0.342855 1.94286L7.2 8.8C7.65714 9.25714 8.34286 9.25714 8.8 8.8Z" fill="#22383A"></path>
-                  </svg>`,
-                    },
-                  ],
-                },
-                { attributes: { class: "dropdown-content", id: "form-countries" } },
-              ],
-            },
-          ],
-        },
-      ],
-    },
+    content: { type: typeCountrySelect },
   });
 
   addBlock(typePhoneNumberInput, {
@@ -272,6 +175,6 @@ export default function (editor, opt = {}) {
         </g>
       </g>
     </svg>`,
-    content: { type: typeRadio },
+    content: { type: typePhoneNumberInput },
   });
 }

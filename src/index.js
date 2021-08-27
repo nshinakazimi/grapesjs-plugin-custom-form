@@ -14,6 +14,7 @@ export default (editor, opts = {}) => {
       "checkbox",
       "radio",
       "form-group",
+      "checkbox-group",
       "radio-group",
       "country-select",
       "phone-input",
